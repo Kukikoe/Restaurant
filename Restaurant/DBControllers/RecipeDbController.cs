@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 
-namespace RestaurantDataAccessLayer.DBControllers
+namespace Restaurant.DBControllers
 {
     public class RecipeDbController
     {
@@ -62,6 +62,26 @@ namespace RestaurantDataAccessLayer.DBControllers
                 }
                 reader.Close();
                 return list;
+            }
+        }
+        /// <summary>
+        /// Delete row with current ID
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>Return true if deleting success, else false</returns>
+        public static bool DeleteRecipe(int id)
+        {
+            string sqlExpression = "DeleteRecipySP";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add(new SqlParameter { ParameterName = "@id", Value = id });
+                command.ExecuteNonQuery();
+                return true;
+
             }
         }
     }

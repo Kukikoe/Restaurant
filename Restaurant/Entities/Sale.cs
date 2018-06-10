@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Restaurant.Entities
 {
-    public class Layout
+    public class Sale
     {
         public int Id { get; set; }
         public int IdDish { get; set; }
-        public int IdProduct { get; set; }
-        public double Quantity { get; set; }
+        public int NumOfSales { get; set; }
+        public double TotalAmount { get; set; }
     }
 }

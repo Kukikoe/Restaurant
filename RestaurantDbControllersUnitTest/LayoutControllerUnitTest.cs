@@ -13,21 +13,32 @@ namespace RestaurantDbControllersUnitTest
         public void SelectLayoutTestMethod()
         {
             List<Layout> list = LayoutDbController.GetLayouts();
-            Assert.AreEqual(list.Count, 0);
+            Assert.IsTrue(list != null);
         }
-
         [TestMethod]
         public void AddLayoutTestMethod()
         {
             List<Layout> list = LayoutDbController.GetLayouts();
             int count = list.Count;
-            bool res1 = LayoutDbController.AddLayout(100, 1, 1);
-            bool res2 = LayoutDbController.AddLayout(150, 1, 8);
-            bool res3 = LayoutDbController.AddLayout(20, 1, 13);
-            Assert.AreEqual(res1, true);
-            Assert.AreEqual(res2, true);
-            Assert.AreEqual(res3, true);
-            Assert.AreEqual(LayoutDbController.GetLayouts().Count, count + 3);
+            bool res = LayoutDbController.AddLayout(1, 1, 100.5);
+            Assert.IsTrue(res);
+            List<Layout> newList = LayoutDbController.GetLayouts();
+            Assert.AreEqual(newList.Count, ++count);
+            Assert.AreEqual(newList[count - 1].IdDish, 1);
+            Assert.AreEqual(newList[count - 1].IdProduct, 1);
+            Assert.AreEqual(newList[count - 1].Quantity, 100.5);
         }
+
+        [TestMethod]
+        public void DeleteLayoutTestMetod()
+        {
+            bool resAdd = LayoutDbController.AddLayout(1, 1, 100.5);
+            Assert.IsTrue(resAdd);
+            List<Layout> list = LayoutDbController.GetLayouts();
+            int count = list.Count;
+            bool resDel = LayoutDbController.DeleteLayout(list[count - 1].Id);
+            Assert.IsTrue(resDel);
+            Assert.AreEqual(LayoutDbController.GetLayouts().Count, --count);
+        } 
     }
 }

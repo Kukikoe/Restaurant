@@ -53,6 +53,8 @@
     <Compile Include="RecipeControllerUnitTest.cs" />
     <Compile Include="ProductsControllerUnitTest.cs" />
     <Compile Include="DishesControllerUnitTest.cs" />
+    <Compile Include="PurchaseControllerUnitTest.cs" />
+    <Compile Include="SaleControllerUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -12,17 +12,31 @@ namespace RestaurantDbControllersUnitTest
         [TestMethod]
         public void SelectProductsTestMethod()
         {
-            List<Product> list = ProductDBController.GetProduct();
-            Assert.AreEqual(list.Count, 0);
+            List<Product> list = ProductDbController.GetProducts();
+            Assert.IsTrue(list != null);
         }
         [TestMethod]
         public void AddProductTestMethod()
         {
-            List<Product> list = ProductDBController.GetProduct();
+            List<Product> list = ProductDbController.GetProducts();
             int count = list.Count;
-            bool res = ProductDBController.AddProduct("Potato", "gr");
+            bool res = ProductDbController.AddProduct("Potato", "gr");
             Assert.AreEqual(res, true);
-            Assert.AreEqual(ProductDBController.GetProduct().Count, ++count);
+            List<Product> resList = ProductDbController.GetProducts();
+            Assert.AreEqual(resList.Count, ++count);
+            Assert.AreEqual(resList[count - 1].Name, "Potato");
+            Assert.AreEqual(resList[count - 1].Unit, "gr");
         }
+        [TestMethod]
+        public void DeleteProductTestMethod()
+        {
+            bool resAdd = ProductDbController.AddProduct("Potato", "gr");
+            Assert.IsTrue(resAdd);
+            List<Product> list = ProductDbController.GetProducts();
+            int count = list.Count;
+            bool resDel = ProductDbController.DeleteProduct(list[count - 1].Id);
+            Assert.IsTrue(resDel);
+            Assert.AreEqual(ProductDbController.GetProducts().Count, --count);
+        }      
     }
 }

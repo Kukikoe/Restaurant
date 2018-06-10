@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Restaurant.Entities;
-using RestaurantDataAccessLayer.DBControllers;
+using Restaurant.DBControllers;
 
 namespace RestaurantDbControllersUnitTest
 {
@@ -13,17 +13,32 @@ namespace RestaurantDbControllersUnitTest
         public void SelectLayoutTestMethod()
         {
             List<Recipe> list = RecipeDbController.GetRecipes();
-            Assert.AreEqual(list.Count, 0);
+            Assert.IsTrue(list != null);
         }
-
         [TestMethod]
-        public void AddRecipeTest()
+        public void AddRecipeTestMethod()
         {
             List<Recipe> list = RecipeDbController.GetRecipes();
             int count = list.Count;
-            bool res = RecipeDbController.AddRecipe("Patato with mushrooms", "Potato 100 gr on skillet witn 20 ml oil, free 30 minutes on medium fire. Then add 150 gr mushrooms and free 5 minutes. Good Luck!");
+            bool res = RecipeDbController.AddRecipe("Test name", "Test Recipe");
             Assert.IsTrue(res);
-            Assert.AreEqual(RecipeDbController.GetRecipes().Count, ++count);
+            List<Recipe> resList = RecipeDbController.GetRecipes();
+            Assert.AreEqual(resList.Count, ++count);
+            Assert.AreEqual(resList[count - 1].NameDish, "Test name");
+            Assert.AreEqual(resList[count - 1].Recipy, "Test Recipe");
+        }
+
+        [TestMethod]
+        public void DeleteRecipeTestMethod()
+        {
+            bool resAdd = RecipeDbController.AddRecipe("Test name", "Test Recipe");
+            Assert.IsTrue(resAdd);
+            List<Recipe> list = RecipeDbController.GetRecipes();
+            int count = list.Count;
+            bool res = RecipeDbController.DeleteRecipe(list[count - 1].Id);
+            Assert.IsTrue(res);
+            List<Recipe> resList = RecipeDbController.GetRecipes();
+            Assert.AreEqual(resList.Count, --count);
         }
     }
 }

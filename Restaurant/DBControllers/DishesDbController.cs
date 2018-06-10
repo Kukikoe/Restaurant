@@ -19,7 +19,7 @@ namespace Restaurant.DBControllers
         /// <param name="unit">Unit measurement of one dish</param>
         /// <param name="price">Price of one dish</param>
         /// <returns>Return count of added dishes (1 or 0)</returns>
-        public static bool AddDish(string name, int recipeId, int portionSize, string unit, int price)
+        public static bool AddDish(string name, int recipeId, int portionSize, string unit, double price)
         {
             string sqlExpression = "AddDishSP";
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -61,12 +61,32 @@ namespace Restaurant.DBControllers
                         int recipeId = reader.GetInt32(2);
                         int portionSize = reader.GetInt32(3);
                         string unit = reader.GetString(4);
-                        int price = reader.GetInt32(5);
+                        double price = reader.GetDouble(5);
                         list.Add(new Dish(){Id = id, Name = name, RecipeId = recipeId, PortionSize = portionSize, Unit = unit, Price = price});
                     }
                 }
                 reader.Close();
                 return list;
+            }
+        }
+        /// <summary>
+        /// Delete row with current ID
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>Return true if deleting success, else false</returns>
+        public static bool DeleteDish(int id)
+        {
+            string sqlExpression = "DeleteDishSP";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.Add(new SqlParameter { ParameterName = "@id", Value = id });
+                command.ExecuteNonQuery();
+                return true;
+
             }
         }
     }

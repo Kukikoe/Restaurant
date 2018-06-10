@@ -13,6 +13,6 @@ namespace Restaurant.Entities
         public int RecipeId { get; set; }
         public int PortionSize { get; set; }
         public string Unit { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
     }
 }

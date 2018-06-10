@@ -45,11 +45,15 @@
     <Compile Include="DBControllers\DishesDbController.cs" />
     <Compile Include="DBControllers\LayoutDbController.cs" />
     <Compile Include="DBControllers\ProductDbController.cs" />
+    <Compile Include="DBControllers\PurchaseDbController.cs" />
     <Compile Include="DBControllers\RecipeDbController.cs" />
+    <Compile Include="DBControllers\SaleDbController.cs" />
     <Compile Include="Entities\Dish.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\Layout.cs" />
+    <Compile Include="Entities\Purchase.cs" />
     <Compile Include="Entities\Recipe.cs" />
+    <Compile Include="Entities\Sale.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

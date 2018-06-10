@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace Restaurant.DBControllers
 {
-    public class ProductDBController
+    public class ProductDbController
     {
         public static string ConnectionString = @"Server=tcp:studyserver.database.windows.net,1433;Initial Catalog=RestaurantDB;Persist Security Info=False;User ID=MainUser;Password=ghbvf2GHBVF;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         /// <summary>
@@ -33,7 +33,7 @@ namespace Restaurant.DBControllers
         /// Select products from tbProducts
         /// </summary>
         /// <returns>list of products</returns>
-        public static List<Product> GetProduct()
+        public static List<Product> GetProducts()
         {
             string sqlExpression = "SelectProductsSp";
             using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -54,7 +54,26 @@ namespace Restaurant.DBControllers
             }
                 return list;
             }
+        }
+        /// <summary>
+        /// Delete row with current ID
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>Return true if deleting success, else false</returns>
+        public static bool DeleteProduct(int id)
+        {
+            string sqlExpression = "DeleteProductSP";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                command.CommandType = CommandType.StoredProcedure;
 
+                command.Parameters.Add(new SqlParameter { ParameterName = "@id", Value = id });
+                command.ExecuteNonQuery();
+                return true;
+
+            }
         }
     }
 }
