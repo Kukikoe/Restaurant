@@ -43,30 +43,37 @@ namespace RestaurantWinForm
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
-        {     
-            if (number == 1)
+        {
+            if (textBoxId.Text != "")
             {
-                ProductDbController.DeleteProduct(int.Parse(textBoxId.Text));
+                if (number == 1)
+                {
+                    ProductDbController.DeleteProduct(int.Parse(textBoxId.Text));
+                }
+                if (number == 2)
+                {
+                    DishesDbController.DeleteDish(int.Parse(textBoxId.Text));
+                }
+                if (number == 3)
+                {
+                    LayoutDbController.DeleteLayout(int.Parse(textBoxId.Text));
+                }
+                if (number == 4)
+                {
+                    RecipeDbController.DeleteRecipe(int.Parse(textBoxId.Text));
+                }
+                if (number == 5)
+                {
+                    PurchaseDbController.DeletePurchase(int.Parse(textBoxId.Text));
+                }
+                if (number == 6)
+                {
+                    SaleDbController.DeleteSale(int.Parse(textBoxId.Text));
+                }
             }
-            if (number == 2)
+            else
             {
-                DishesDbController.DeleteDish(int.Parse(textBoxId.Text));
-            }
-            if (number == 3)
-            {
-                LayoutDbController.DeleteLayout(int.Parse(textBoxId.Text));
-            }
-            if (number == 4)
-            {
-                RecipeDbController.DeleteRecipe(int.Parse(textBoxId.Text));
-            }
-            if (number == 5)
-            {
-                PurchaseDbController.DeletePurchase(int.Parse(textBoxId.Text));
-            }
-            if (number == 6)
-            {
-                SaleDbController.DeleteSale(int.Parse(textBoxId.Text));
+                MessageBox.Show("All fields must be filled! Please try again)");
             }
         }
 
