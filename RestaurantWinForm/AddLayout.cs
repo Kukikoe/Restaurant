@@ -6,23 +6,35 @@ namespace RestaurantWinForm
 {
     public partial class AddLayout : Form
     {
-        static public MainForm main_form;
         public AddLayout()
         {
             InitializeComponent();
-            main_form = new MainForm();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            main_form.Show();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            LayoutDbController.AddLayout(int.Parse(textBoxDishId.Text), int.Parse(textBoxProductId.Text), double.Parse(textBoxQuantity.Text));
-            MessageBox.Show("Success");
+            if (textBoxDishId.Text != "" && textBoxProductId.Text != "" && textBoxQuantity.Text != "")
+            {
+                if (double.Parse(textBoxQuantity.Text) > 0)
+                {
+                    LayoutDbController.AddLayout(int.Parse(textBoxDishId.Text), int.Parse(textBoxProductId.Text), double.Parse(textBoxQuantity.Text));
+                    MessageBox.Show("Success");
+                }
+                else
+                {
+                    MessageBox.Show("Quantity can not be negative! Please try again)");
+                    textBoxQuantity.Text = "";
+                }
+            }
+            else
+            {
+                MessageBox.Show("All fields must be filled! Please try again)");
+            }
         }
     }
 }

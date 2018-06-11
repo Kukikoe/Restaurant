@@ -31,12 +31,13 @@
             this.DeleteButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxId = new System.Windows.Forms.TextBox();
-            this.BackButton = new System.Windows.Forms.Button();
+            this.CloseButton = new System.Windows.Forms.Button();
+            this.labelTittle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(177, 85);
+            this.DeleteButton.Location = new System.Drawing.Point(177, 101);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteButton.TabIndex = 0;
@@ -47,7 +48,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 33);
+            this.label1.Location = new System.Drawing.Point(12, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 13);
             this.label1.TabIndex = 1;
@@ -55,27 +56,37 @@
             // 
             // textBoxId
             // 
-            this.textBoxId.Location = new System.Drawing.Point(64, 30);
+            this.textBoxId.Location = new System.Drawing.Point(64, 46);
             this.textBoxId.Name = "textBoxId";
             this.textBoxId.Size = new System.Drawing.Size(100, 20);
             this.textBoxId.TabIndex = 2;
             // 
-            // BackButton
+            // CloseButton
             // 
-            this.BackButton.Location = new System.Drawing.Point(77, 85);
-            this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(75, 23);
-            this.BackButton.TabIndex = 3;
-            this.BackButton.Text = "< Back";
-            this.BackButton.UseVisualStyleBackColor = true;
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            this.CloseButton.Location = new System.Drawing.Point(77, 101);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(75, 23);
+            this.CloseButton.TabIndex = 3;
+            this.CloseButton.Text = "Close";
+            this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // labelTittle
+            // 
+            this.labelTittle.AutoSize = true;
+            this.labelTittle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTittle.Location = new System.Drawing.Point(16, 13);
+            this.labelTittle.Name = "labelTittle";
+            this.labelTittle.Size = new System.Drawing.Size(0, 16);
+            this.labelTittle.TabIndex = 4;
             // 
             // Deleting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 143);
-            this.Controls.Add(this.BackButton);
+            this.Controls.Add(this.labelTittle);
+            this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.textBoxId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DeleteButton);
@@ -91,6 +102,7 @@
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxId;
-        private System.Windows.Forms.Button BackButton;
+        private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Label labelTittle;
     }
 }

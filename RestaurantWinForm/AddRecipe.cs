@@ -6,23 +6,27 @@ namespace RestaurantWinForm
 {
     public partial class AddRecipe : Form
     {
-        static public MainForm main_form;
         public AddRecipe()
         {
             InitializeComponent();
-            main_form = new MainForm();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            main_form.Show();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            RecipeDbController.AddRecipe(textBoxName.Text, textBoxRecipe.Text);
-            MessageBox.Show("Success");
+            if (textBoxName.Text != "" && textBoxRecipe.Text != "")
+            {
+                RecipeDbController.AddRecipe(textBoxName.Text, textBoxRecipe.Text);
+                MessageBox.Show("Success");
+            }
+            else
+            {
+                MessageBox.Show("All fields must be filled! Please try again)");
+            }
         }
     }
 }

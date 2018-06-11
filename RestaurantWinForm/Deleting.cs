@@ -7,17 +7,39 @@ namespace RestaurantWinForm
 {
     public partial class Deleting : Form
     {
-        static public MainForm main_form;
         private int number;
         public Deleting()
         {
             InitializeComponent();
-            main_form = new MainForm();
         }
 
         public void GetNumberOfDeletion(int x)
         {
             number = x;
+            if (number == 1)
+            {
+                labelTittle.Text = "Delete row from table tbProducts";
+            }
+            if (number == 2)
+            {
+                labelTittle.Text = "Delete row from table tbDishes";
+            }
+            if (number == 3)
+            {
+                labelTittle.Text = "Delete row from table tbLayout";
+            }
+            if (number == 4)
+            {
+                labelTittle.Text = "Delete row from table tbRecipes";
+            }
+            if (number == 5)
+            {
+                labelTittle.Text = "Delete row from table tbPurchases";
+            }
+            if (number == 6)
+            {
+                labelTittle.Text = "Delete row from table tbSales";
+            }
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -48,10 +70,9 @@ namespace RestaurantWinForm
             }
         }
 
-        private void BackButton_Click(object sender, EventArgs e)
+        private void CloseButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            main_form.Show();
+            this.Close();
         }
     }
 }
